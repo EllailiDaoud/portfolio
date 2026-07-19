@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daoud Ellaili · Cybersécurité, GRC et gestion des vulnérabilités</title>
+<meta name="description" content="Portfolio de Daoud Ellaili, ingénieur en sécurité des systèmes d'information et cyberdéfense. Gouvernance, risques et conformité (ISO 27001, Loi 05-20, DNSSI) et gestion des vulnérabilités.">
+<meta property="og:title" content="Daoud Ellaili · Cybersécurité">
+<meta property="og:description" content="GRC et gestion des vulnérabilités. ISO 27001, EBIOS RM, Loi 05-20, DNSSI, Tenable, OpenVAS.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230F141B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' fill='%23E26B0A' text-anchor='middle'%3EDE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#0F141B;
+  --ink-2:#151C26;
+  --slate:#1B2430;
+  --line:rgba(199,209,220,.14);
+  --paper:#F7F3EC;
+  --paper-2:#EFE9DE;
+  --paper-line:rgba(35,39,43,.14);
+  --ember:#E26B0A;
+  --ember-deep:#B85406;
+  --peach:#FCE4D6;
+  --txt:#CBD5E0;
+  --txt-strong:#F2F5F8;
+  --txt-mute:#8E9CAB;
+  --txt-paper:#23272B;
+  --txt-paper-mute:#5B6167;
+  --disp:'Spectral',Georgia,serif;
+  --body:'Public Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --maxw:1120px;
+  --r:6px;
+}
+
+/* ============ BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--txt);
+  font-family:var(--body);
+  font-size:16.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--ember);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{scroll-margin-top:96px}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(15,20,27,.82);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{
+  max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;gap:28px;
+}
+.brand{font-family:var(--disp);font-weight:600;font-size:1.25rem;color:var(--txt-strong)}
+.brand em{font-style:normal;color:var(--ember)}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--txt-mute);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--peach)}
+.lang{
+  display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;
+  margin-left:22px;flex-shrink:0;
+}
+.lang button{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+  background:none;border:none;color:var(--txt-mute);
+  padding:6px 14px;cursor:pointer;transition:all .2s;
+}
+.lang button[aria-pressed="true"]{background:var(--ember);color:var(--ink);font-weight:500}
+.lang button:hover:not([aria-pressed="true"]){color:var(--peach)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 480px at 82% -10%,rgba(226,107,10,.09),transparent 60%),
+    radial-gradient(700px 420px at -10% 110%,rgba(252,228,214,.05),transparent 55%),
+    var(--ink);
+}
+.hero-in{
+  max-width:var(--maxw);margin:0 auto;padding:130px 28px 80px;
+  display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;
+  width:100%;
+}
+.tlp{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--txt-mute);
+  border:1px solid var(--line);border-radius:999px;padding:7px 16px;
+  margin-bottom:30px;
+}
+.tlp b{color:var(--peach);font-weight:500}
+.tlp::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--ember);
+  box-shadow:0 0 10px rgba(226,107,10,.8)}
+.hero h1{
+  font-family:var(--disp);font-weight:600;
+  font-size:clamp(2.7rem,6vw,4.4rem);
+  line-height:1.04;color:var(--txt-strong);
+  letter-spacing:-.015em;
+  margin-bottom:18px;
+}
+.hero h1 .dot{color:var(--ember)}
+.role{
+  font-family:var(--disp);font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,2.2vw,1.4rem);
+  color:var(--peach);margin-bottom:22px;
+}
+.lede{max-width:56ch;color:var(--txt);margin-bottom:30px}
+.pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.pill{
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;
+  color:var(--peach);border:1px solid rgba(252,228,214,.28);
+  border-radius:999px;padding:8px 18px;
+}
+.pill.hot{border-color:rgba(226,107,10,.55);color:var(--ember)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.btn{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;
+  padding:13px 26px;border-radius:var(--r);
+  transition:transform .18s,box-shadow .18s,background .18s,color .18s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-solid{background:var(--ember);color:var(--ink);font-weight:500}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(226,107,10,.35)}
+.btn-ghost{border:1px solid var(--line);color:var(--txt)}
+.btn-ghost:hover{border-color:var(--peach);color:var(--peach);transform:translateY(-2px)}
+.hero-meta{
+  font-family:var(--mono);font-size:.76rem;color:var(--txt-mute);
+  letter-spacing:.04em;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.hero-meta .sep{color:var(--ember)}
+
+/* risk matrix figure */
+.fig{justify-self:end;text-align:center}
+.matrix{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:7px;
+  width:min(300px,100%);aspect-ratio:1;
+  padding:18px;border:1px solid var(--line);border-radius:10px;
+  background:var(--ink-2);
+  position:relative;
+}
+.cell{border-radius:3px;background:rgba(199,209,220,.05);border:1px solid rgba(199,209,220,.06)}
+.cell.s1{background:rgba(252,228,214,.10)}
+.cell.s2{background:rgba(252,228,214,.22)}
+.cell.s3{background:rgba(226,107,10,.32)}
+.cell.s4{background:rgba(226,107,10,.6)}
+.cell.crit{background:var(--ember);animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,107,10,.5)}50%{box-shadow:0 0 18px 4px rgba(226,107,10,.28)}}
+.ax{
+  position:absolute;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--txt-mute);
+}
+.ax-x{bottom:-24px;left:50%;transform:translateX(-50%)}
+.ax-y{left:-24px;top:50%;transform:translate(-50%,-50%) rotate(-90deg)}
+.figcap{
+  margin-top:38px;font-family:var(--mono);font-size:.7rem;
+  color:var(--txt-mute);letter-spacing:.06em;
+}
+.figcap b{color:var(--peach);font-weight:500}
+
+/* ============ SECTION SHELL ============ */
+.sec{padding:96px 0}
+.sec-alt{background:var(--ink-2)}
+.sec-head{
+  display:flex;align-items:baseline;gap:18px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:18px;margin-bottom:52px;
+}
+.sec-num{font-family:var(--mono);font-size:1rem;color:var(--ember)}
+.sec-head h2{
+  font-family:var(--disp);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.3rem);
+  color:var(--txt-strong);letter-spacing:-.01em;
+}
+.sec-tag{
+  margin-left:auto;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--txt-mute);
+  white-space:nowrap;
+}
+
+/* ============ PROFILE ============ */
+.paper{
+  background:var(--paper);color:var(--txt-paper);
+  border-radius:var(--r);
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+  position:relative;
+}
+.paper::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--ember);border-radius:var(--r) var(--r) 0 0;
+}
+.profile-card{padding:52px 56px;max-width:860px}
+.doc-label{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--txt-paper-mute);
+  display:flex;justify-content:space-between;gap:16px;
+  border-bottom:1px solid var(--paper-line);
+  padding-bottom:14px;margin-bottom:26px;
+}
+.profile-card p{margin-bottom:18px;color:#3A4046}
+.profile-card p:last-child{margin-bottom:0}
+.profile-card strong{color:var(--txt-paper);font-weight:600}
+.profile-card .callout{
+  font-family:var(--disp);font-style:italic;font-size:1.14rem;
+  color:var(--ember-deep);
+  border-left:2px solid var(--ember);
+  padding-left:18px;margin-top:26px;
+}
+
+/* ============ EXPERIENCE ============ */
+.xp{display:flex;flex-direction:column;gap:0;position:relative;padding-left:34px}
+.xp::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.xp-item{position:relative;padding:0 0 44px 0}
+.xp-item:last-child{padding-bottom:0}
+.xp-item::before{
+  content:'';position:absolute;left:-32px;top:8px;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--ember);
+}
+.xp-date{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--ember);
+  text-transform:uppercase;margin-bottom:8px}
+.xp-role{font-family:var(--disp);font-weight:600;font-size:1.3rem;color:var(--txt-strong)}
+.xp-org{font-family:var(--mono);font-size:.78rem;color:var(--txt-mute);margin:6px 0 16px;
+  letter-spacing:.04em}
+.xp ul{list-style:none;display:flex;flex-direction:column;gap:9px;max-width:72ch}
+.xp li{padding-left:20px;position:relative;color:var(--txt)}
+.xp li::before{content:'◦';position:absolute;left:0;color:var(--ember)}
+
+/* ============ PROJECTS ============ */
+.proj-intro{max-width:66ch;color:var(--txt);margin-bottom:46px;margin-top:-16px}
+.sub-label{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--txt-mute);display:flex;align-items:center;gap:14px;
+  margin:0 0 26px;
+}
+.sub-label::after{content:'';height:1px;background:var(--line);flex:1}
+.sub-label b{color:var(--peach);font-weight:500}
+.sub-label.center{justify-content:center}
+.sub-label.center::after{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.m-gap{margin-bottom:60px}
+
+/* mission cards: dark, confidential register */
+.mcard{
+  background:var(--slate);border:1px solid var(--line);
+  border-left:2px solid var(--ember);
+  border-radius:var(--r);padding:28px 28px 26px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .2s,border-color .2s;
+}
+.mcard:hover{transform:translateY(-4px);border-color:rgba(226,107,10,.45)}
+.badge{
+  align-self:flex-start;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--peach);border:1px solid rgba(252,228,214,.3);
+  border-radius:3px;padding:4px 10px;
+}
+.mcard h3{font-family:var(--disp);font-weight:600;font-size:1.18rem;color:var(--txt-strong);
+  line-height:1.3}
+.mcard p{font-size:.92rem;color:var(--txt);flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--mono);font-size:.66rem;color:var(--txt-mute);
+  border:1px solid var(--line);border-radius:999px;padding:3px 10px;letter-spacing:.04em}
+
+/* lab cards: paper, open-source register */
+.lcard{
+  background:var(--paper);color:var(--txt-paper);
+  border-radius:var(--r);padding:28px 28px 24px;
+  display:flex;flex-direction:column;gap:12px;
+  box-shadow:0 10px 28px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s;
+}
+.lcard:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(0,0,0,.42)}
+.lcard .lab-kind{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember-deep);
+}
+.lcard h3{font-family:var(--disp);font-weight:600;font-size:1.15rem;line-height:1.3}
+.lcard p{font-size:.9rem;color:#3A4046;flex:1}
+.repo-link{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
+  color:var(--ember-deep);font-weight:500;
+  display:inline-flex;gap:6px;align-items:center;
+  border-bottom:1px solid transparent;align-self:flex-start;
+  transition:border-color .2s;
+}
+.repo-link:hover{border-color:var(--ember-deep)}
+.gh-all{text-align:center;margin-top:44px}
+
+/* ============ SKILLS ============ */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+.pillar{
+  background:var(--slate);border:1px solid var(--line);border-radius:var(--r);
+  padding:34px 32px;
+}
+.pillar-num{font-family:var(--mono);font-size:.7rem;color:var(--ember);letter-spacing:.14em;
+  margin-bottom:10px;text-transform:uppercase}
+.pillar h3{font-family:var(--disp);font-weight:600;font-size:1.35rem;color:var(--txt-strong);
+  margin-bottom:8px}
+.pillar .pdesc{font-size:.92rem;color:var(--txt-mute);margin-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{
+  font-family:var(--mono);font-size:.72rem;color:var(--txt);
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;
+  letter-spacing:.02em;transition:border-color .2s,color .2s;
+}
+.chip:hover{border-color:var(--ember);color:var(--peach)}
+.skill-row{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 32px;display:flex;gap:26px;align-items:baseline;flex-wrap:wrap;
+  margin-bottom:22px;
+}
+.skill-row:last-child{margin-bottom:0}
+.skill-row .rlab{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--peach);min-width:180px;
+}
+
+/* ============ EDUCATION / CERTS ============ */
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:56px}
+.cert{
+  background:var(--paper);color:var(--txt-paper);border-radius:var(--r);
+  padding:28px;box-shadow:0 10px 28px rgba(0,0,0,.3);
+  display:flex;flex-direction:column;gap:6px;
+}
+.cert .cyr{font-family:var(--mono);font-size:.68rem;color:var(--ember-deep);letter-spacing:.14em}
+.cert h3{font-family:var(--disp);font-weight:600;font-size:1.1rem;line-height:1.35}
+.cert .corg{font-size:.85rem;color:var(--txt-paper-mute)}
+.school{display:flex;flex-direction:column;gap:26px;max-width:760px}
+.school-item{display:grid;grid-template-columns:170px 1fr;gap:24px;align-items:baseline;
+  border-top:1px solid var(--line);padding-top:24px}
+.school-item .sdate{font-family:var(--mono);font-size:.74rem;color:var(--ember);letter-spacing:.08em}
+.school-item h3{font-family:var(--disp);font-weight:600;font-size:1.2rem;color:var(--txt-strong)}
+.school-item p{color:var(--txt-mute);font-size:.92rem;margin-top:4px}
+.langs{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.langchip{
+  font-family:var(--mono);font-size:.74rem;color:var(--txt);
+  border:1px solid var(--line);border-radius:999px;padding:8px 18px;letter-spacing:.03em;
+}
+.langchip b{color:var(--peach);font-weight:500}
+
+/* ============ CONTACT ============ */
+.contact{text-align:center;padding:120px 0 100px}
+.contact h2{
+  font-family:var(--disp);font-weight:600;
+  font-size:clamp(2rem,4.6vw,3.1rem);color:var(--txt-strong);
+  letter-spacing:-.015em;max-width:22ch;margin:0 auto 16px;line-height:1.15;
+}
+.contact .csub{
+  font-family:var(--disp);font-style:italic;font-size:1.25rem;color:var(--ember);
+  margin-bottom:44px;
+}
+.contact .ctas{justify-content:center;margin-bottom:0}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:30px 0}
+.foot{
+  max-width:var(--maxw);margin:0 auto;padding:0 28px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.7rem;color:var(--txt-mute);letter-spacing:.06em;
+}
+.foot b{color:var(--peach);font-weight:500}
+
+/* ============ MOTION ============ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.hero .reveal{transition-duration:.9s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr;gap:60px;padding-top:120px}
+  .fig{justify-self:center}
+  .pillars{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .nav-links{display:none}
+  .lang{margin-left:auto}
+  .profile-card{padding:36px 28px}
+  .school-item{grid-template-columns:1fr;gap:6px}
+  .sec{padding:72px 0}
+  .sec-tag{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Navigation principale">
+  <div class="nav-in">
+    <a href="#top" class="brand">D<em>.</em>Ellaili</a>
+    <div class="nav-links">
+      <a href="#profil" data-i18n="nav.profile">Profil</a>
+      <a href="#experience" data-i18n="nav.xp">Expérience</a>
+      <a href="#projets" data-i18n="nav.proj">Projets</a>
+      <a href="#competences" data-i18n="nav.skills">Compétences</a>
+      <a href="#formation" data-i18n="nav.edu">Formation</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button id="btn-fr" aria-pressed="true" onclick="setLang('fr')">FR</button>
+      <button id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-in">
+    <div>
+      <div class="tlp reveal"><span data-i18n="hero.eyebrow">Dossier de compétences</span> <b>· TLP:CLEAR</b></div>
+      <h1 class="reveal">Daoud Ellaili<span class="dot">.</span></h1>
+      <p class="role reveal" data-i18n="hero.role">Ingénieur en sécurité des systèmes d'information et cyberdéfense</p>
+      <p class="lede reveal" data-i18n="hero.lede">Consultant cybersécurité chez DXC Technology (stage PFE). Je conçois des dispositifs de gouvernance alignés sur ISO/IEC 27001, la Loi 05-20 et la DNSSI, puis je les confronte au terrain par l'analyse et la gestion des vulnérabilités.</p>
+      <div class="pills reveal">
+        <span class="pill hot" data-i18n="hero.pill1">Gouvernance, risques et conformité</span>
+        <span class="pill" data-i18n="hero.pill2">Gestion des vulnérabilités</span>
+      </div>
+      <div class="ctas reveal">
+        <a class="btn btn-solid" href="mailto:daoud.ellaili@esi.ac.ma" data-i18n="hero.cta1">Me contacter</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/dellaili" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/EllailiDaoud" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <div class="hero-meta reveal">
+        <span>Rabat, Maroc</span><span class="sep">·</span>
+        <span data-i18n="hero.meta1">Ingénieur ESI, promotion 2026</span><span class="sep">·</span>
+        <span>FR / EN / AR</span>
+      </div>
+    </div>
+    <div class="fig reveal" aria-hidden="true">
+      <div class="matrix">
+        <span class="ax ax-y" data-i18n="fig.y">Impact</span>
+        <span class="ax ax-x" data-i18n="fig.x">Probabilité</span>
+        <div class="cell s1"></div><div class="cell s2"></div><div class="cell s3"></div><div class="cell s4"></div><div class="cell crit"></div>
+        <div class="cell s1"></div><div class="cell s1"></div><div class="cell s2"></div><div class="cell s3"></div><div class="cell s4"></div>
+        <div class="cell"></div><div class="cell s1"></div><div class="cell s2"></div><div class="cell s2"></div><div class="cell s3"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell s1"></div><div class="cell s1"></div><div class="cell s2"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell s1"></div><div class="cell s1"></div>
+      </div>
+      <p class="figcap"><b>Fig. 1</b> <span data-i18n="fig.cap">· Matrice des risques, version illustrative</span></p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. PROFIL ============ -->
+<section class="sec" id="profil">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">1.</span>
+      <h2 data-i18n="s1.title">Profil</h2>
+      <span class="sec-tag" data-i18n="s1.tag">Section 1 / 6</span>
+    </div>
+    <article class="paper profile-card reveal">
+      <div class="doc-label">
+        <span data-i18n="s1.doclab">Fiche · Présentation</span>
+        <span>REF: DE-2026</span>
+      </div>
+      <p data-i18n="s1.p1">Formé à l'École des Sciences de l'Information (ESI Rabat) en ingénierie de la sécurité des systèmes d'information et cyberdéfense, j'évolue à l'intersection de deux mondes: la gouvernance, où la sécurité se pense, et l'analyse de vulnérabilités, où elle se vérifie.</p>
+      <p data-i18n="s1.p2">Côté GRC: normes ISO/IEC 27001:2022, 27005, 22301 et 31000, analyse de risques EBIOS Risk Manager, conformité marocaine (Loi 05-20, DNSSI), rédaction de politiques, procédures et déclarations d'applicabilité. Côté terrain: écosystèmes de scan de vulnérabilités (Tenable, Nessus, OpenVAS/GVM), méthodologie PTES et traduction des constats techniques en plans de remédiation actionnables.</p>
+      <p class="callout" data-i18n="s1.p3">Ma conviction: la conformité n'a de valeur que si elle résiste à un scan.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 2. EXPERIENCE ============ -->
+<section class="sec sec-alt" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">2.</span>
+      <h2 data-i18n="s2.title">Expérience</h2>
+      <span class="sec-tag" data-i18n="s2.tag">Section 2 / 6</span>
+    </div>
+    <div class="xp">
+
+      <div class="xp-item reveal">
+        <p class="xp-date" data-i18n="xp1.date">Févr. 2026 à aujourd'hui</p>
+        <h3 class="xp-role" data-i18n="xp1.role">Consultant cybersécurité · Stage PFE</h3>
+        <p class="xp-org">DXC Technology · Rabat</p>
+        <ul>
+          <li data-i18n="xp1.b1">Conception d'un framework GRC intégré réconciliant la Loi 05-20, la DNSSI et l'ISO/IEC 27001:2022 via un mapping structuré et une analyse de risques réglementaires.</li>
+          <li data-i18n="xp1.b2">Outillage hybride de gestion des risques (ISO 27005 et EBIOS RM): inventaire des actifs, cartographie, plan de traitement et matrice de risques.</li>
+          <li data-i18n="xp1.b3">Outil de classification des données aligné sur les exigences réglementaires marocaines, et exploitation de CISO Assistant en environnement conteneurisé.</li>
+          <li data-i18n="xp1.b4">Missions de conseil pour des clients du secteur public: gestion des vulnérabilités, étude d'architecture sécurisée et corpus documentaire de gouvernance.</li>
+        </ul>
+      </div>
+
+      <div class="xp-item reveal">
+        <p class="xp-date" data-i18n="xp2.date">Août 2025 à Déc. 2025</p>
+        <h3 class="xp-role" data-i18n="xp2.role">Formation JobInTech · Filière GRC</h3>
+        <p class="xp-org">DataProtect · Casablanca</p>
+        <ul>
+          <li data-i18n="xp2.b1">Maîtrise des normes ISO 27000, de la gestion des risques, de la continuité d'activité et de la démarche d'audit.</li>
+          <li data-i18n="xp2.b2">Conformité réglementaire marocaine, protection des données et fondamentaux techniques et organisationnels de la sécurité.</li>
+        </ul>
+      </div>
+
+      <div class="xp-item reveal">
+        <p class="xp-date" data-i18n="xp3.date">Juil. 2025 à Août 2025</p>
+        <h3 class="xp-role" data-i18n="xp3.role">Stage PFA · Audit technique et organisationnel</h3>
+        <p class="xp-org">AMDL · Rabat</p>
+        <ul>
+          <li data-i18n="xp3.b1">Audit technique selon PTES: tests d'intrusion de bout en bout, rapport de preuves et recommandations.</li>
+          <li data-i18n="xp3.b2">Audit organisationnel ISO/IEC 27001: gap analysis (Annexe A) et plan de traitement.</li>
+        </ul>
+      </div>
+
+      <div class="xp-item reveal">
+        <p class="xp-date" data-i18n="xp4.date">Févr. 2025 à Mars 2025</p>
+        <h3 class="xp-role" data-i18n="xp4.role">Stagiaire pentest</h3>
+        <p class="xp-org">Hacktify Cybersecurity · Remote</p>
+        <ul>
+          <li data-i18n="xp4.b1">Tests d'intrusion web, documentation des risques et traduction des failles techniques en mesures de sécurité.</li>
+        </ul>
+      </div>
+
+      <div class="xp-item reveal">
+        <p class="xp-date" data-i18n="xp5.date">Août 2024 à Sept. 2024</p>
+        <h3 class="xp-role" data-i18n="xp5.role">Stage d'initiation · Infrastructure et réseau</h3>
+        <p class="xp-org">Evolution Contractors · Casablanca</p>
+        <ul>
+          <li data-i18n="xp5.b1">Formalisation et application de procédures de durcissement systèmes et réseaux, VPN site à site et gestion des règles firewall.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. PROJETS ============ -->
+<section class="sec" id="projets">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">3.</span>
+      <h2 data-i18n="s3.title">Projets</h2>
+      <span class="sec-tag" data-i18n="s3.tag">Section 3 / 6</span>
+    </div>
+    <p class="proj-intro reveal" data-i18n="s3.intro">Deux registres: des missions menées pour des clients réels, anonymisées par respect de la confidentialité, et des labs personnels publiés en open source.</p>
+
+    <p class="sub-label reveal"><b>3.1</b> <span data-i18n="s3.sub1">Missions de conseil · Clients anonymisés</span></p>
+    <div class="grid m-gap">
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m1.badge">Secteur public</span>
+        <h3 data-i18n="m1.title">Plateforme de gestion des vulnérabilités</h3>
+        <p data-i18n="m1.desc">Cadrage et déploiement d'une solution de gestion des vulnérabilités pour un organisme public: prérequis techniques, dossier d'installation, dimensionnement, modèle de licence par scanners et accompagnement au lancement du projet.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="m1.t1">Vulnerability management</span>
+          <span class="tag" data-i18n="m1.t2">Cadrage technique</span>
+          <span class="tag" data-i18n="m1.t3">Documentation</span>
+        </div>
+      </article>
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m2.badge">Secteur public</span>
+        <h3 data-i18n="m2.title">Étude d'architecture applicative sécurisée</h3>
+        <p data-i18n="m2.desc">Comparaison structurée de deux architectures de plateforme web pour un organisme public: cadre réglementaire, modèle de risques, recommandations et bibliographie, en trois itérations de livrable.</p>
+        <div class="tags">
+          <span class="tag" data-i18n="m2.t1">Architecture sécurisée</span>
+          <span class="tag" data-i18n="m2.t2">Analyse de risques</span>
+          <span class="tag" data-i18n="m2.t3">Livrables</span>
+        </div>
+      </article>
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m3.badge">SMSI</span>
+        <h3 data-i18n="m3.title">Corpus documentaire de gouvernance</h3>
+        <p data-i18n="m3.desc">Conception d'un corpus de plus de cent documents génériques (politiques, procédures, standards) aligné ISO/IEC 27001:2022, avec charte typographique unifiée et génération programmatique des livrables.</p>
+        <div class="tags">
+          <span class="tag">PSSI</span>
+          <span class="tag">ISO 27001</span>
+          <span class="tag" data-i18n="m3.t3">Automatisation</span>
+        </div>
+      </article>
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m4.badge">Projet de fin d'études</span>
+        <h3 data-i18n="m4.title">Framework GRC intégré</h3>
+        <p data-i18n="m4.desc">Mapping structuré entre la Loi 05-20, la DNSSI et l'ISO/IEC 27001:2022, gestion des risques hybride ISO 27005 et EBIOS RM, opérationnalisée dans CISO Assistant en environnement conteneurisé.</p>
+        <div class="tags">
+          <span class="tag">EBIOS RM</span>
+          <span class="tag">CISO Assistant</span>
+          <span class="tag" data-i18n="m4.t3">Conformité</span>
+        </div>
+      </article>
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m5.badge">Étude de cas</span>
+        <h3 data-i18n="m5.title">Appréciation des risques EBIOS RM</h3>
+        <p data-i18n="m5.desc">Production des livrables complets d'appréciation du risque: 16 actifs cartographiés, 7 événements redoutés, 8 couples source de risque et objectif visé, 6 scénarios stratégiques et opérationnels, 20 mesures de sécurité.</p>
+        <div class="tags">
+          <span class="tag">EBIOS RM</span>
+          <span class="tag" data-i18n="m5.t2">Cartographie</span>
+          <span class="tag" data-i18n="m5.t3">Plan de traitement</span>
+        </div>
+      </article>
+
+      <article class="mcard reveal">
+        <span class="badge" data-i18n="m6.badge">SMSI</span>
+        <h3 data-i18n="m6.title">Mise en place d'un SMSI ISO 27001</h3>
+        <p data-i18n="m6.desc">Socle documentaire conforme ISO/IEC 27001:2022: politique, périmètre, contexte, objectifs de sécurité et Déclaration d'Applicabilité, avec plan de formation et de sensibilisation orienté facteur humain.</p>
+        <div class="tags">
+          <span class="tag">SoA</span>
+          <span class="tag" data-i18n="m6.t2">Annexe A</span>
+          <span class="tag" data-i18n="m6.t3">Sensibilisation</span>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="sub-label reveal"><b>3.2</b> <span data-i18n="s3.sub2">Labs et open source · GitHub</span></p>
+    <div class="grid">
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l1.kind">Lab réseau</span>
+        <h3>SSL-VPN</h3>
+        <p data-i18n="l1.desc">Lab SSL-VPN complet avec pfSense et OpenVPN, accompagné d'un comparatif pédagogique SSL vs VPN.</p>
+        <a class="repo-link" href="https://github.com/EllailiDaoud/SSL-VPN" target="_blank" rel="noopener"><span data-i18n="lab.link">Voir le repo</span> ↗</a>
+      </article>
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l2.kind">Détection · Machine learning</span>
+        <h3>Cyberattack Clustering IDS2018</h3>
+        <p data-i18n="l2.desc">Pipeline reproductible enrichissant un classifieur IDS supervisé avec des signaux de clustering non supervisé sur le dataset CSE-CIC-IDS2018.</p>
+        <a class="repo-link" href="https://github.com/EllailiDaoud/Cyberattack_Clustering_IDS2018" target="_blank" rel="noopener"><span data-i18n="lab.link">Voir le repo</span> ↗</a>
+      </article>
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l3.kind">Lab infrastructure</span>
+        <h3>Active Directory Lab</h3>
+        <p data-i18n="l3.desc">Montage et sécurisation d'un lab Active Directory, de l'installation au durcissement, avec rapport détaillé.</p>
+        <a class="repo-link" href="https://github.com/EllailiDaoud/ad-lab-report" target="_blank" rel="noopener"><span data-i18n="lab.link">Voir le repo</span> ↗</a>
+      </article>
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l4.kind">Scan de vulnérabilités</span>
+        <h3>OpenVAS / GVM</h3>
+        <p data-i18n="l4.desc">Déploiement et vérification d'OpenVAS/GVM sur Kali Linux: interprétation des scans, résolution des avertissements de configuration et lecture critique des résultats.</p>
+        <span class="repo-link" style="border:none;cursor:default" data-i18n="l4.local">Lab local</span>
+      </article>
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l5.kind">Biométrie · Machine learning</span>
+        <h3>LFW Biometric Project</h3>
+        <p data-i18n="l5.desc">Expérimentations de reconnaissance faciale sur le dataset Labeled Faces in the Wild, en notebooks reproductibles.</p>
+        <a class="repo-link" href="https://github.com/EllailiDaoud/LFW_Biometric_Project" target="_blank" rel="noopener"><span data-i18n="lab.link">Voir le repo</span> ↗</a>
+      </article>
+
+      <article class="lcard reveal">
+        <span class="lab-kind" data-i18n="l6.kind">Prototype de recherche</span>
+        <h3>EduChain</h3>
+        <p data-i18n="l6.desc">Prototype de recherche d'une plateforme e-learning adossée à la blockchain.</p>
+        <a class="repo-link" href="https://github.com/EllailiDaoud/EduChain" target="_blank" rel="noopener"><span data-i18n="lab.link">Voir le repo</span> ↗</a>
+      </article>
+
+    </div>
+    <p class="gh-all reveal"><a class="btn btn-ghost" href="https://github.com/EllailiDaoud?tab=repositories" target="_blank" rel="noopener"><span data-i18n="s3.ghall">Tous les projets sur GitHub</span> ↗</a></p>
+  </div>
+</section>
+
+<!-- ============ 4. COMPETENCES ============ -->
+<section class="sec sec-alt" id="competences">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">4.</span>
+      <h2 data-i18n="s4.title">Compétences</h2>
+      <span class="sec-tag" data-i18n="s4.tag">Section 4 / 6</span>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <p class="pillar-num" data-i18n="s4.p1num">Pilier 01</p>
+        <h3 data-i18n="s4.p1title">Gouvernance, risques et conformité</h3>
+        <p class="pdesc" data-i18n="s4.p1desc">Concevoir, documenter et piloter un dispositif de sécurité conforme et auditable.</p>
+        <div class="chips">
+          <span class="chip">ISO/IEC 27001:2022</span>
+          <span class="chip">ISO 27005</span>
+          <span class="chip">ISO 22301</span>
+          <span class="chip">ISO 31000</span>
+          <span class="chip">EBIOS RM</span>
+          <span class="chip">Loi 05-20</span>
+          <span class="chip">DNSSI</span>
+          <span class="chip" data-i18n="s4.c1">Politiques et procédures</span>
+          <span class="chip">SoA</span>
+          <span class="chip" data-i18n="s4.c2">Classification des données</span>
+          <span class="chip">PCA / PRA / BIA</span>
+          <span class="chip">TPRM</span>
+          <span class="chip" data-i18n="s4.c3">Audit et gap analysis</span>
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <p class="pillar-num" data-i18n="s4.p2num">Pilier 02</p>
+        <h3 data-i18n="s4.p2title">Gestion des vulnérabilités</h3>
+        <p class="pdesc" data-i18n="s4.p2desc">Détecter, prioriser et traduire les failles techniques en décisions de sécurité.</p>
+        <div class="chips">
+          <span class="chip">Tenable Security Center</span>
+          <span class="chip">Nessus</span>
+          <span class="chip">OpenVAS / GVM</span>
+          <span class="chip">PTES</span>
+          <span class="chip" data-i18n="s4.c4">Tests d'intrusion web</span>
+          <span class="chip" data-i18n="s4.c5">Priorisation et remédiation</span>
+          <span class="chip" data-i18n="s4.c6">Reporting exécutif</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <span class="rlab" data-i18n="s4.r1">Outils et environnements</span>
+      <div class="chips">
+        <span class="chip">CISO Assistant</span>
+        <span class="chip">Kali Linux</span>
+        <span class="chip">pfSense / OpenVPN</span>
+        <span class="chip">Active Directory</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Python</span>
+        <span class="chip">Bash</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">Git</span>
+        <span class="chip" data-i18n="s4.c7">LaTeX et rédaction technique</span>
+      </div>
+    </div>
+    <div class="skill-row reveal">
+      <span class="rlab" data-i18n="s4.r2">Qualités</span>
+      <div class="chips">
+        <span class="chip" data-i18n="s4.q1">Communication</span>
+        <span class="chip" data-i18n="s4.q2">Rigueur</span>
+        <span class="chip" data-i18n="s4.q3">Esprit d'équipe</span>
+        <span class="chip" data-i18n="s4.q4">Fiabilité</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. FORMATION ============ -->
+<section class="sec" id="formation">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">5.</span>
+      <h2 data-i18n="s5.title">Certifications et formation</h2>
+      <span class="sec-tag" data-i18n="s5.tag">Section 5 / 6</span>
+    </div>
+    <div class="edu-grid">
+      <div class="cert reveal">
+        <span class="cyr">2026</span>
+        <h3>CompTIA Security+</h3>
+        <p class="corg">CompTIA</p>
+      </div>
+      <div class="cert reveal">
+        <span class="cyr">2025</span>
+        <h3>ISO/IEC 27001 Foundation</h3>
+        <p class="corg">PECB</p>
+      </div>
+      <div class="cert reveal">
+        <span class="cyr">2025</span>
+        <h3>Cybersecurity Professional</h3>
+        <p class="corg">Google</p>
+      </div>
+    </div>
+    <div class="school">
+      <div class="school-item reveal">
+        <span class="sdate">2023 · 2026</span>
+        <div>
+          <h3 data-i18n="s5.e1">École des Sciences de l'Information · Rabat</h3>
+          <p data-i18n="s5.e1d">Ingénierie de la sécurité des systèmes d'information et cyberdéfense.</p>
+        </div>
+      </div>
+      <div class="school-item reveal">
+        <span class="sdate">2021 · 2023</span>
+        <div>
+          <h3 data-i18n="s5.e2">Classes préparatoires · Laâyoune</h3>
+          <p data-i18n="s5.e2d">Lissan Eddine Ibn Alkhatib, filière mathématiques et physique.</p>
+        </div>
+      </div>
+    </div>
+    <div class="langs reveal">
+      <span class="langchip"><b data-i18n="s5.l1">Arabe</b> · <span data-i18n="s5.l1v">langue maternelle</span></span>
+      <span class="langchip"><b data-i18n="s5.l2">Français</b> · <span data-i18n="s5.l2v">niveau professionnel</span></span>
+      <span class="langchip"><b data-i18n="s5.l3">Anglais</b> · <span data-i18n="s5.l3v">niveau professionnel</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. CONTACT ============ -->
+<section class="sec sec-alt contact" id="contact">
+  <div class="wrap">
+    <p class="sub-label center reveal"><b>6.</b> <span data-i18n="s6.label">Contact</span></p>
+    <h2 class="reveal" data-i18n="s6.title">Un projet GRC, un périmètre à évaluer, une opportunité?</h2>
+    <p class="csub reveal" data-i18n="s6.sub">Parlons-en.</p>
+    <div class="ctas reveal">
+      <a class="btn btn-solid" href="mailto:daoud.ellaili@esi.ac.ma">daoud.ellaili@esi.ac.ma</a>
+      <a class="btn btn-ghost" href="tel:+212681612362">+212 6 81 61 23 62</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/dellaili" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/EllailiDaoud" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <span>© 2026 Daoud Ellaili · Rabat, Maroc</span>
+    <span><span data-i18n="foot.class">Classification</span>: <b>TLP:CLEAR</b> · <span data-i18n="foot.made">Conçu avec rigueur</span></span>
+  </div>
+</footer>
+
+<script>
+/* ============ I18N ============ */
+const I18N = {
+fr: {
+  "nav.profile":"Profil","nav.xp":"Expérience","nav.proj":"Projets","nav.skills":"Compétences","nav.edu":"Formation","nav.contact":"Contact",
+  "hero.eyebrow":"Dossier de compétences",
+  "hero.role":"Ingénieur en sécurité des systèmes d'information et cyberdéfense",
+  "hero.lede":"Consultant cybersécurité chez DXC Technology (stage PFE). Je conçois des dispositifs de gouvernance alignés sur ISO/IEC 27001, la Loi 05-20 et la DNSSI, puis je les confronte au terrain par l'analyse et la gestion des vulnérabilités.",
+  "hero.pill1":"Gouvernance, risques et conformité","hero.pill2":"Gestion des vulnérabilités",
+  "hero.cta1":"Me contacter","hero.meta1":"Ingénieur ESI, promotion 2026",
+  "fig.y":"Impact","fig.x":"Probabilité","fig.cap":"· Matrice des risques, version illustrative",
+  "s1.title":"Profil","s1.tag":"Section 1 / 6","s1.doclab":"Fiche · Présentation",
+  "s1.p1":"Formé à l'École des Sciences de l'Information (ESI Rabat) en ingénierie de la sécurité des systèmes d'information et cyberdéfense, j'évolue à l'intersection de deux mondes: la gouvernance, où la sécurité se pense, et l'analyse de vulnérabilités, où elle se vérifie.",
+  "s1.p2":"Côté GRC: normes ISO/IEC 27001:2022, 27005, 22301 et 31000, analyse de risques EBIOS Risk Manager, conformité marocaine (Loi 05-20, DNSSI), rédaction de politiques, procédures et déclarations d'applicabilité. Côté terrain: écosystèmes de scan de vulnérabilités (Tenable, Nessus, OpenVAS/GVM), méthodologie PTES et traduction des constats techniques en plans de remédiation actionnables.",
+  "s1.p3":"Ma conviction: la conformité n'a de valeur que si elle résiste à un scan.",
+  "s2.title":"Expérience","s2.tag":"Section 2 / 6",
+  "xp1.date":"Févr. 2026 à aujourd'hui","xp1.role":"Consultant cybersécurité · Stage PFE",
+  "xp1.b1":"Conception d'un framework GRC intégré réconciliant la Loi 05-20, la DNSSI et l'ISO/IEC 27001:2022 via un mapping structuré et une analyse de risques réglementaires.",
+  "xp1.b2":"Outillage hybride de gestion des risques (ISO 27005 et EBIOS RM): inventaire des actifs, cartographie, plan de traitement et matrice de risques.",
+  "xp1.b3":"Outil de classification des données aligné sur les exigences réglementaires marocaines, et exploitation de CISO Assistant en environnement conteneurisé.",
+  "xp1.b4":"Missions de conseil pour des clients du secteur public: gestion des vulnérabilités, étude d'architecture sécurisée et corpus documentaire de gouvernance.",
+  "xp2.date":"Août 2025 à Déc. 2025","xp2.role":"Formation JobInTech · Filière GRC",
+  "xp2.b1":"Maîtrise des normes ISO 27000, de la gestion des risques, de la continuité d'activité et de la démarche d'audit.",
+  "xp2.b2":"Conformité réglementaire marocaine, protection des données et fondamentaux techniques et organisationnels de la sécurité.",
+  "xp3.date":"Juil. 2025 à Août 2025","xp3.role":"Stage PFA · Audit technique et organisationnel",
+  "xp3.b1":"Audit technique selon PTES: tests d'intrusion de bout en bout, rapport de preuves et recommandations.",
+  "xp3.b2":"Audit organisationnel ISO/IEC 27001: gap analysis (Annexe A) et plan de traitement.",
+  "xp4.date":"Févr. 2025 à Mars 2025","xp4.role":"Stagiaire pentest",
+  "xp4.b1":"Tests d'intrusion web, documentation des risques et traduction des failles techniques en mesures de sécurité.",
+  "xp5.date":"Août 2024 à Sept. 2024","xp5.role":"Stage d'initiation · Infrastructure et réseau",
+  "xp5.b1":"Formalisation et application de procédures de durcissement systèmes et réseaux, VPN site à site et gestion des règles firewall.",
+  "s3.title":"Projets","s3.tag":"Section 3 / 6",
+  "s3.intro":"Deux registres: des missions menées pour des clients réels, anonymisées par respect de la confidentialité, et des labs personnels publiés en open source.",
+  "s3.sub1":"Missions de conseil · Clients anonymisés","s3.sub2":"Labs et open source · GitHub",
+  "m1.badge":"Secteur public","m1.title":"Plateforme de gestion des vulnérabilités",
+  "m1.desc":"Cadrage et déploiement d'une solution de gestion des vulnérabilités pour un organisme public: prérequis techniques, dossier d'installation, dimensionnement, modèle de licence par scanners et accompagnement au lancement du projet.",
+  "m1.t1":"Vulnerability management","m1.t2":"Cadrage technique","m1.t3":"Documentation",
+  "m2.badge":"Secteur public","m2.title":"Étude d'architecture applicative sécurisée",
+  "m2.desc":"Comparaison structurée de deux architectures de plateforme web pour un organisme public: cadre réglementaire, modèle de risques, recommandations et bibliographie, en trois itérations de livrable.",
+  "m2.t1":"Architecture sécurisée","m2.t2":"Analyse de risques","m2.t3":"Livrables",
+  "m3.badge":"SMSI","m3.title":"Corpus documentaire de gouvernance",
+  "m3.desc":"Conception d'un corpus de plus de cent documents génériques (politiques, procédures, standards) aligné ISO/IEC 27001:2022, avec charte typographique unifiée et génération programmatique des livrables.",
+  "m3.t3":"Automatisation",
+  "m4.badge":"Projet de fin d'études","m4.title":"Framework GRC intégré",
+  "m4.desc":"Mapping structuré entre la Loi 05-20, la DNSSI et l'ISO/IEC 27001:2022, gestion des risques hybride ISO 27005 et EBIOS RM, opérationnalisée dans CISO Assistant en environnement conteneurisé.",
+  "m4.t3":"Conformité",
+  "m5.badge":"Étude de cas","m5.title":"Appréciation des risques EBIOS RM",
+  "m5.desc":"Production des livrables complets d'appréciation du risque: 16 actifs cartographiés, 7 événements redoutés, 8 couples source de risque et objectif visé, 6 scénarios stratégiques et opérationnels, 20 mesures de sécurité.",
+  "m5.t2":"Cartographie","m5.t3":"Plan de traitement",
+  "m6.badge":"SMSI","m6.title":"Mise en place d'un SMSI ISO 27001",
+  "m6.desc":"Socle documentaire conforme ISO/IEC 27001:2022: politique, périmètre, contexte, objectifs de sécurité et Déclaration d'Applicabilité, avec plan de formation et de sensibilisation orienté facteur humain.",
+  "m6.t2":"Annexe A","m6.t3":"Sensibilisation",
+  "lab.link":"Voir le repo","l4.local":"Lab local",
+  "l1.kind":"Lab réseau",
+  "l1.desc":"Lab SSL-VPN complet avec pfSense et OpenVPN, accompagné d'un comparatif pédagogique SSL vs VPN.",
+  "l2.kind":"Détection · Machine learning",
+  "l2.desc":"Pipeline reproductible enrichissant un classifieur IDS supervisé avec des signaux de clustering non supervisé sur le dataset CSE-CIC-IDS2018.",
+  "l3.kind":"Lab infrastructure",
+  "l3.desc":"Montage et sécurisation d'un lab Active Directory, de l'installation au durcissement, avec rapport détaillé.",
+  "l4.kind":"Scan de vulnérabilités",
+  "l4.desc":"Déploiement et vérification d'OpenVAS/GVM sur Kali Linux: interprétation des scans, résolution des avertissements de configuration et lecture critique des résultats.",
+  "l5.kind":"Biométrie · Machine learning",
+  "l5.desc":"Expérimentations de reconnaissance faciale sur le dataset Labeled Faces in the Wild, en notebooks reproductibles.",
+  "l6.kind":"Prototype de recherche",
+  "l6.desc":"Prototype de recherche d'une plateforme e-learning adossée à la blockchain.",
+  "s3.ghall":"Tous les projets sur GitHub",
+  "s4.title":"Compétences","s4.tag":"Section 4 / 6",
+  "s4.p1num":"Pilier 01","s4.p1title":"Gouvernance, risques et conformité",
+  "s4.p1desc":"Concevoir, documenter et piloter un dispositif de sécurité conforme et auditable.",
+  "s4.p2num":"Pilier 02","s4.p2title":"Gestion des vulnérabilités",
+  "s4.p2desc":"Détecter, prioriser et traduire les failles techniques en décisions de sécurité.",
+  "s4.c1":"Politiques et procédures","s4.c2":"Classification des données","s4.c3":"Audit et gap analysis",
+  "s4.c4":"Tests d'intrusion web","s4.c5":"Priorisation et remédiation","s4.c6":"Reporting exécutif",
+  "s4.c7":"LaTeX et rédaction technique",
+  "s4.r1":"Outils et environnements","s4.r2":"Qualités",
+  "s4.q1":"Communication","s4.q2":"Rigueur","s4.q3":"Esprit d'équipe","s4.q4":"Fiabilité",
+  "s5.title":"Certifications et formation","s5.tag":"Section 5 / 6",
+  "s5.e1":"École des Sciences de l'Information · Rabat",
+  "s5.e1d":"Ingénierie de la sécurité des systèmes d'information et cyberdéfense.",
+  "s5.e2":"Classes préparatoires · Laâyoune",
+  "s5.e2d":"Lissan Eddine Ibn Alkhatib, filière mathématiques et physique.",
+  "s5.l1":"Arabe","s5.l1v":"langue maternelle","s5.l2":"Français","s5.l2v":"niveau professionnel",
+  "s5.l3":"Anglais","s5.l3v":"niveau professionnel",
+  "s6.label":"Contact","s6.title":"Un projet GRC, un périmètre à évaluer, une opportunité?",
+  "s6.sub":"Parlons-en.",
+  "foot.class":"Classification","foot.made":"Conçu avec rigueur",
+  "meta.title":"Daoud Ellaili · Cybersécurité, GRC et gestion des vulnérabilités",
+  "meta.desc":"Portfolio de Daoud Ellaili, ingénieur en sécurité des systèmes d'information et cyberdéfense. Gouvernance, risques et conformité (ISO 27001, Loi 05-20, DNSSI) et gestion des vulnérabilités."
+},
+en: {
+  "nav.profile":"Profile","nav.xp":"Experience","nav.proj":"Projects","nav.skills":"Skills","nav.edu":"Education","nav.contact":"Contact",
+  "hero.eyebrow":"Competency dossier",
+  "hero.role":"Information Systems Security and Cyberdefense Engineer",
+  "hero.lede":"Cybersecurity consultant at DXC Technology (graduation internship). I design governance frameworks aligned with ISO/IEC 27001, Moroccan Law 05-20 and the DNSSI, then put them to the test through vulnerability assessment and management.",
+  "hero.pill1":"Governance, risk and compliance","hero.pill2":"Vulnerability management",
+  "hero.cta1":"Contact me","hero.meta1":"ESI engineer, class of 2026",
+  "fig.y":"Impact","fig.x":"Likelihood","fig.cap":"· Risk matrix, illustrative",
+  "s1.title":"Profile","s1.tag":"Section 1 / 6","s1.doclab":"Record · Overview",
+  "s1.p1":"Trained at the School of Information Sciences (ESI Rabat) in information systems security and cyberdefense engineering, I work at the intersection of two worlds: governance, where security is designed, and vulnerability assessment, where it is verified.",
+  "s1.p2":"On the GRC side: ISO/IEC 27001:2022, 27005, 22301 and 31000, EBIOS Risk Manager risk analysis, Moroccan compliance (Law 05-20, DNSSI), drafting of policies, procedures and statements of applicability. On the field side: vulnerability scanning ecosystems (Tenable, Nessus, OpenVAS/GVM), the PTES methodology and turning technical findings into actionable remediation plans.",
+  "s1.p3":"My conviction: compliance only has value if it survives a scan.",
+  "s2.title":"Experience","s2.tag":"Section 2 / 6",
+  "xp1.date":"Feb. 2026 to present","xp1.role":"Cybersecurity Consultant · Graduation internship",
+  "xp1.b1":"Designed an integrated GRC framework reconciling Law 05-20, the DNSSI and ISO/IEC 27001:2022 through structured mapping and regulatory risk analysis.",
+  "xp1.b2":"Built a hybrid risk management toolset (ISO 27005 and EBIOS RM): asset inventory, risk mapping, treatment plan and risk matrix.",
+  "xp1.b3":"Developed a data classification tool aligned with Moroccan regulatory requirements, and operated CISO Assistant in a containerized environment.",
+  "xp1.b4":"Consulting engagements for public sector clients: vulnerability management, secure architecture study and governance documentation corpus.",
+  "xp2.date":"Aug. 2025 to Dec. 2025","xp2.role":"JobInTech Program · GRC track",
+  "xp2.b1":"Mastered the ISO 27000 family, risk management, business continuity and the audit approach.",
+  "xp2.b2":"Moroccan regulatory compliance, data protection and the technical and organizational fundamentals of security.",
+  "xp3.date":"Jul. 2025 to Aug. 2025","xp3.role":"Internship · Technical and organizational audit",
+  "xp3.b1":"Technical audit following PTES: end-to-end penetration testing, evidence report and recommendations.",
+  "xp3.b2":"ISO/IEC 27001 organizational audit: gap analysis (Annex A) and treatment plan.",
+  "xp4.date":"Feb. 2025 to Mar. 2025","xp4.role":"Pentest intern",
+  "xp4.b1":"Web penetration testing, risk documentation and translation of technical flaws into security measures.",
+  "xp5.date":"Aug. 2024 to Sep. 2024","xp5.role":"Introductory internship · Infrastructure and network",
+  "xp5.b1":"Formalized and applied system and network hardening procedures, site-to-site VPN and firewall rule management.",
+  "s3.title":"Projects","s3.tag":"Section 3 / 6",
+  "s3.intro":"Two registers: engagements delivered for real clients, anonymized out of respect for confidentiality, and personal labs published as open source.",
+  "s3.sub1":"Consulting engagements · Anonymized clients","s3.sub2":"Labs and open source · GitHub",
+  "m1.badge":"Public sector","m1.title":"Vulnerability management platform",
+  "m1.desc":"Scoping and deployment of a vulnerability management solution for a public organization: technical prerequisites, installation dossier, sizing, scanner-based licensing model and support through project kickoff.",
+  "m1.t1":"Vulnerability management","m1.t2":"Technical scoping","m1.t3":"Documentation",
+  "m2.badge":"Public sector","m2.title":"Secure application architecture study",
+  "m2.desc":"Structured comparison of two web platform architectures for a public organization: regulatory framework, risk model, recommendations and bibliography, across three deliverable iterations.",
+  "m2.t1":"Secure architecture","m2.t2":"Risk analysis","m2.t3":"Deliverables",
+  "m3.badge":"ISMS","m3.title":"Governance documentation corpus",
+  "m3.desc":"Design of a corpus of more than one hundred generic documents (policies, procedures, standards) aligned with ISO/IEC 27001:2022, with a unified typographic charter and programmatic generation of deliverables.",
+  "m3.t3":"Automation",
+  "m4.badge":"Graduation project","m4.title":"Integrated GRC framework",
+  "m4.desc":"Structured mapping between Law 05-20, the DNSSI and ISO/IEC 27001:2022, hybrid ISO 27005 and EBIOS RM risk management, operationalized in CISO Assistant in a containerized environment.",
+  "m4.t3":"Compliance",
+  "m5.badge":"Case study","m5.title":"EBIOS RM risk assessment",
+  "m5.desc":"Produced the full risk assessment deliverables: 16 mapped assets, 7 feared events, 8 risk source and target objective pairs, 6 strategic and operational scenarios, 20 security measures.",
+  "m5.t2":"Risk mapping","m5.t3":"Treatment plan",
+  "m6.badge":"ISMS","m6.title":"ISO 27001 ISMS implementation",
+  "m6.desc":"Documentation foundation compliant with ISO/IEC 27001:2022: policy, scope, context, security objectives and Statement of Applicability, with a human-factor oriented training and awareness plan.",
+  "m6.t2":"Annex A","m6.t3":"Awareness",
+  "lab.link":"View repo","l4.local":"Local lab",
+  "l1.kind":"Network lab",
+  "l1.desc":"Complete SSL-VPN lab with pfSense and OpenVPN, together with an educational SSL vs VPN comparison.",
+  "l2.kind":"Detection · Machine learning",
+  "l2.desc":"Reproducible pipeline enriching a supervised IDS classifier with unsupervised clustering signals on the CSE-CIC-IDS2018 dataset.",
+  "l3.kind":"Infrastructure lab",
+  "l3.desc":"Set up and secured an Active Directory lab, from installation to hardening, with a detailed report.",
+  "l4.kind":"Vulnerability scanning",
+  "l4.desc":"Deployed and verified OpenVAS/GVM on Kali Linux: scan interpretation, resolution of configuration warnings and critical reading of results.",
+  "l5.kind":"Biometrics · Machine learning",
+  "l5.desc":"Facial recognition experiments on the Labeled Faces in the Wild dataset, in reproducible notebooks.",
+  "l6.kind":"Research prototype",
+  "l6.desc":"Research prototype of a blockchain-backed e-learning platform.",
+  "s3.ghall":"All projects on GitHub",
+  "s4.title":"Skills","s4.tag":"Section 4 / 6",
+  "s4.p1num":"Pillar 01","s4.p1title":"Governance, risk and compliance",
+  "s4.p1desc":"Design, document and steer a compliant, auditable security program.",
+  "s4.p2num":"Pillar 02","s4.p2title":"Vulnerability management",
+  "s4.p2desc":"Detect, prioritize and turn technical flaws into security decisions.",
+  "s4.c1":"Policies and procedures","s4.c2":"Data classification","s4.c3":"Audit and gap analysis",
+  "s4.c4":"Web penetration testing","s4.c5":"Prioritization and remediation","s4.c6":"Executive reporting",
+  "s4.c7":"LaTeX and technical writing",
+  "s4.r1":"Tools and environments","s4.r2":"Soft skills",
+  "s4.q1":"Communication","s4.q2":"Rigor","s4.q3":"Team spirit","s4.q4":"Reliability",
+  "s5.title":"Certifications and education","s5.tag":"Section 5 / 6",
+  "s5.e1":"School of Information Sciences · Rabat",
+  "s5.e1d":"Information systems security and cyberdefense engineering.",
+  "s5.e2":"Preparatory classes · Laayoune",
+  "s5.e2d":"Lissan Eddine Ibn Alkhatib, mathematics and physics track.",
+  "s5.l1":"Arabic","s5.l1v":"native","s5.l2":"French","s5.l2v":"professional",
+  "s5.l3":"English","s5.l3v":"professional",
+  "s6.label":"Contact","s6.title":"A GRC project, a perimeter to assess, an opportunity?",
+  "s6.sub":"Let's talk.",
+  "foot.class":"Classification","foot.made":"Built with rigor",
+  "meta.title":"Daoud Ellaili · Cybersecurity, GRC and vulnerability management",
+  "meta.desc":"Portfolio of Daoud Ellaili, information systems security and cyberdefense engineer. Governance, risk and compliance (ISO 27001, Law 05-20, DNSSI) and vulnerability management."
+}
+};
+
+let lang = 'fr';
+function setLang(l){
+  lang = l;
+  const dict = I18N[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.documentElement.lang = l;
+  document.title = dict['meta.title'];
+  const md = document.querySelector('meta[name="description"]');
+  if(md) md.setAttribute('content', dict['meta.desc']);
+  document.getElementById('btn-fr').setAttribute('aria-pressed', l==='fr' ? 'true':'false');
+  document.getElementById('btn-en').setAttribute('aria-pressed', l==='en' ? 'true':'false');
+  try{
+    const url = new URL(window.location.href);
+    if(l==='en'){ url.searchParams.set('lang','en'); } else { url.searchParams.delete('lang'); }
+    history.replaceState(null,'',url);
+  }catch(e){}
+}
+
+/* read ?lang=en on load */
+try{
+  const p = new URLSearchParams(window.location.search);
+  if(p.get('lang')==='en') setLang('en');
+}catch(e){}
+
+/* ============ SCROLL REVEAL ============ */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+  });
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* hero: staggered entrance */
+document.querySelectorAll('.hero .reveal').forEach((el,i)=>{
+  el.style.transitionDelay = (i*90)+'ms';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
+});
+</script>
+</body>
+</html>
